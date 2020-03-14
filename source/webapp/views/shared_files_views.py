@@ -7,7 +7,7 @@ from django.views import View
 from django.views.generic import DetailView, UpdateView, CreateView
 
 from webapp.forms import SharedFileForm, SharedFileAnonymusForm
-from webapp.models import SharedFile, ACCESS_CLOSED, ACCESS_PUBLIC
+from webapp.models import SharedFile, ACCESS_CLOSED, ACCESS_PUBLIC, ACCESS_PRIVATE
 from webapp.views.base_views import SimpleSearchView
 
 
@@ -16,7 +16,7 @@ class IndexView(SimpleSearchView):
     model = SharedFile
     context_object_name = 'sharedfiles'
     paginate_by = 10
-    paginate_orphans = 2
+    paginate_orphans = 0
     ordering = ['-uploaded']
 
     def get_queryset(self):
@@ -30,10 +30,24 @@ class IndexView(SimpleSearchView):
         return Q(name__icontains=self.search_query)
 
 
-class FileDetailView(DetailView):
+class FileDetailView(UserPassesTestMixin, DetailView):
     model = SharedFile
     template_name = 'file/detail.html'
 
+    def get_file(self):
+        file_pk = self.kwargs['pk']
+        file = get_object_or_404(SharedFile, pk=file_pk)
+        return file
+
+    def test_func(self):
+        file = self.get_file()
+        if self.request.user.has_perm('webapp.view_sharedfile'):
+            return True
+
+        if file.sharing_type == ACCESS_PRIVATE:
+            return self.request.user.id == file.user_id.id or self.request.user in file.privately_accessed.all()
+        
+        return True
 
 class FileEditView(UserPassesTestMixin, UpdateView):
     model = SharedFile

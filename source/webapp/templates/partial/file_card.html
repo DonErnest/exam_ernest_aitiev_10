@@ -1,4 +1,4 @@
-<div class="card border-success" style="width: 18rem;">
+<div class="card border-success ml-1 mr-1 mb-1" style="width: 18rem;">
     <div class="card-header"><a href="{% url 'webapp:file_detailed' file.pk %}">{{ file.name }}</a></div>
     <div class="card-body text-success">
         <h5 class="card-subtitle mb-2 text-muted">
@@ -10,6 +10,6 @@
         {% else %}
             <p class="text-muted">Неизвестный благодетель</p>
         {% endif %}
-        <a href="{{ file.file.url }}" class="card-link">Скачать</a>
+        <a href="{{ file.file.url }}" class="card-link download-link" id="{{ file.pk }}">Скачать</a>
     </div>
 </div>

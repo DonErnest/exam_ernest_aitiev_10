@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}
     Файл
 {% endblock %}
@@ -34,29 +35,34 @@
             {% elif sharedfile.sharing_type == 'closed'%}
                 <h6>Файл скрыт</h6>
             {% else %}
-                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAccess" aria-expanded="false" aria-controls="collapseExample">
+                <button class="btn btn-primary" id='collapseAccessButton' data-file-id='{{ sharedfile.pk }}' type="button" data-toggle="collapse" data-target="#collapseAccess" aria-expanded="false" aria-controls="collapseExample">
                     Доступ к файлу
                 </button>
                 <div class="collapse" id="collapseAccess">
                     <div class="card card-body" id="privileged_users">
                         {% if sharedfile.privately_accessed %}
                             {% for user in  sharedfile.privately_accessed.all %}
-                                <a href="{% url 'accounts:view_user_files' user.id %}">{{ user.username }}</a>
+                                <div class="btn-group btn-group-sm w-50">
+                                    <a class='btn btn-info' href="{% url 'accounts:view_user_files' user.id %}"><i class="far fa-eye"></i> {{ user.username }}</a>
+                                    <button id="depriveButton_{{ user.id }}" class="btn btn-danger depriveAccess" data-id="{{ user.id }}"><i class="fas fa-user-slash"></i> Забрать права</button>
+                                </div>
+
+
                             {% endfor %}
                         {% else  %}
                             <h6 id="accessNone">Пользователь никому не доверяет</h6>
                         {% endif %}
-                        <form id="formAddAccessToUser">
+                        <form id="formAddAccessToUser" class="pt-5">
+                            {% csrf_token %}
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Введите имя пользователя</span>
                                 </div>
-                                <input type="text" maxlength="150" aria-label="username" class="form-control">
+                                <input type="text" maxlength="150" aria-label="username" class="form-control" name="user_name" id="id_user_name">
                                 <input type="submit" class="btn btn-success" value="Дать доступ" id="provideAccessSubmit">
                             </div>
                         </form>
                     </div>
-
                 </div>
             {% endif %}
         </div>
@@ -81,4 +87,8 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/fileDetail.js' %}"></script>
 {% endblock %}

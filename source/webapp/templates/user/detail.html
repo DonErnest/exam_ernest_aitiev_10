@@ -16,6 +16,8 @@
                 {% include 'partial/file_card.html' %}
             {% elif file.sharing_type == 'closed' and request.user.id == user_obj.id %}
                 {% include 'partial/file_card.html' %}
+            {% elif file.sharing_type == 'private' and request.user.id == user_obj.id %}
+                {% include 'partial/file_card.html' %}
             {% endif %}
         {% endfor %}
     </div>
