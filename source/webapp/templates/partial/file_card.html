@@ -1,0 +1,15 @@
+<div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title"><a href="#">{{ file.name }}</a></h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+            загружен {{ file.uploaded|date:'d.m.Y' }}
+        </h6>
+        <p class="card-text">Скачан {{ file.downloaded_count }} раз</p>
+        {% if file.user_id %}
+            <a href="{% url 'accounts:view_user_files' file.user_id.id %}" class="card-link">{{ file.user_id.username }}</a>
+        {% else %}
+            <p class="text-muted">Неизвестный благодетель</p>
+        {% endif %}
+        <a href="#" class="card-link">Скачать</a>
+    </div>
+</div>

@@ -1,9 +1,10 @@
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from accounts.forms import SignUpForm
 
@@ -20,3 +21,9 @@ class UserLoginView(LoginView):
 
 class UserLogoutView(LogoutView):
     next_page = 'webapp:index'
+
+
+class UserDetailView(DetailView):
+    template_name = 'user/detail.html'
+    context_object_name = 'user_obj'
+    model = User

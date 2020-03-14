@@ -1,1 +1,13 @@
 {% extends 'base.html' %}
+{% block title %}
+    Файлы
+{% endblock %}
+{% block content %}
+    {% include 'partial/pagination.html' %}
+    <div class="row">
+        {% for file in sharedfiles %}
+            {% include 'partial/file_card.html' %}
+        {% endfor %}
+    </div>
+    {% include 'partial/pagination.html' %}
+{% endblock %}

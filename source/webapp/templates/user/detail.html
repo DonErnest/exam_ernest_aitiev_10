@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+    Профиль
+{% endblock %}
+{% block content %}
+    <h1>Профиль пользователя {{ user_obj.username }}</h1>
+    <hr>
+    <h2>Файлы пользователя</h2>
+    <div class="row">
+        {% for file in user_obj.files.all %}
+            {% include 'partial/file_card.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}
