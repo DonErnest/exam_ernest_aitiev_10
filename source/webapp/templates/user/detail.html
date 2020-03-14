@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}
     Профиль
 {% endblock %}
@@ -21,4 +22,8 @@
             {% endif %}
         {% endfor %}
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/download_counter.js' %}"></script>
 {% endblock %}
