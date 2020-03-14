@@ -2,9 +2,16 @@
 {% block title %}
     Файлы
 {% endblock %}
+{% block menu_links %}
+    <a class="nav-item nav-link" href="{% url 'webapp:add_file' %}">Добавить файл</a>
+    <form class="form-inline my-2 my-lg-0" action="">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="in_article_name">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+{% endblock %}
 {% block content %}
     {% include 'partial/pagination.html' %}
-    <div class="row">
+    <div class="row justify-content-between">
         {% for file in sharedfiles %}
             {% include 'partial/file_card.html' %}
         {% endfor %}

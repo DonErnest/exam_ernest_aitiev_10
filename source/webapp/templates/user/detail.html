@@ -6,9 +6,14 @@
     <h1>Профиль пользователя {{ user_obj.username }}</h1>
     <hr>
     <h2>Файлы пользователя</h2>
+    {% include 'partial/pagination.html' %}
     <div class="row">
         {% for file in user_obj.files.all %}
-            {% include 'partial/file_card.html' %}
+            {% if file.sharing_type == 'public' %}
+                {% include 'partial/file_card.html' %}
+            {% elif file.sharing_type == 'closed' and request.user.id == user_obj.id %}
+                {% include 'partial/file_card.html' %}
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}

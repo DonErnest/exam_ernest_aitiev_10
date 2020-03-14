@@ -14,7 +14,7 @@
 <div class="container mt-3">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="{% url 'webapp:index' %}">Главная</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,8 +23,7 @@
 {#                    <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>#}
 {#                    <a class="nav-item nav-link" href="#">Features</a>#}
 {#                    <a class="nav-item nav-link" href="#">Pricing</a>#}
-                    {% block menu_links %}
-                    {% endblock %}
+
                     {% if request.user.is_authenticated %}
                         <span class="navbar-text">Привет, {{ request.user.username }}!</span>
                         <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">Выйти</a>
@@ -33,6 +32,8 @@
                         <a class="nav-item nav-link" href="{% url 'accounts:sign_up' %}">Регистрация</a>
                         <a class="nav-item nav-link" href="{% url 'accounts:login' %}">Вход</a>
                     {% endif %}
+                    {% block menu_links %}{% endblock %}
+
                 </div>
             </div>
         </nav>

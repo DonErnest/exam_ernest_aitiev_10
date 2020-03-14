@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}
+    Редактирование
+{% endblock %}
+{% block content %}
+    <h1>Редактирование файла</h1>
+    <form action="{% url 'webapp:edit_file' sharedfile.pk %}" method="POST" enctype="multipart/form-data">
+        {% include 'partial/form.html' with button_text='Редактировать' %}
+    </form>
+{% endblock %}

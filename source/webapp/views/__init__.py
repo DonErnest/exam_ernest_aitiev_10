@@ -1,1 +1,1 @@
-from .shared_files_views import IndexView
+from .shared_files_views import IndexView, FileDetailView

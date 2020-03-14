@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
+from django.core.paginator import Paginator, PageNotAnInteger
 from django.shortcuts import render
 
 # Create your views here.
@@ -27,3 +28,7 @@ class UserDetailView(DetailView):
     template_name = 'user/detail.html'
     context_object_name = 'user_obj'
     model = User
+
+    def get_context_data(self, **kwargs):
+        context=super(UserDetailView, self).get_context_data(**kwargs)
+        return context
