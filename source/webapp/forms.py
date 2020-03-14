@@ -11,3 +11,9 @@ class SharedFileForm(forms.ModelForm):
     class Meta:
         model = SharedFile
         fields = ['name', 'file', 'sharing_type']
+
+
+class SharedFileAnonymusForm(forms.ModelForm):
+    class Meta:
+        model = SharedFile
+        fields = ['name', 'file']

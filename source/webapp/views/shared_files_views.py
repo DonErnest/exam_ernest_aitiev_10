@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views import View
 from django.views.generic import DetailView, UpdateView, CreateView
 
-from webapp.forms import SharedFileForm
+from webapp.forms import SharedFileForm, SharedFileAnonymusForm
 from webapp.models import SharedFile, ACCESS_CLOSED, ACCESS_PUBLIC
 from webapp.views.base_views import SimpleSearchView
 
@@ -19,10 +19,9 @@ class IndexView(SimpleSearchView):
     paginate_orphans = 2
     ordering = ['-uploaded']
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(object_list=object_list, **kwargs)
-        print(context)
-        return context
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super().get_context_data(object_list=object_list, **kwargs)
+    #     return context
 
     def get_query(self):
         return Q(name__icontains=self.search_query)
@@ -38,7 +37,11 @@ class FileEditView(UserPassesTestMixin, UpdateView):
     form_class = SharedFileForm
     template_name = 'file/update.html'
 
-    def get_form_class(self):
+    def get_form(self, form_class=None):
+        file = self.get_file()
+        if file.user_id is None or not self.request.user.is_authenticated:
+            self.form_class = SharedFileAnonymusForm
+        return super(FileEditView, self).get_form(form_class)
 
     def get_success_url(self):
         return reverse('webapp:file_detailed', kwargs={'pk': self.object.pk})
@@ -77,7 +80,12 @@ class FileAddView(CreateView):
     model = SharedFile
     form_class = SharedFileForm
     template_name = 'file/create.html'
-
+    
+    def get_form(self, form_class=None):
+        if not self.request.user.is_authenticated:
+            self.form_class = SharedFileAnonymusForm
+        return super(FileAddView, self).get_form(form_class)
+    
     def get_success_url(self):
         return reverse('webapp:file_detailed', kwargs={'pk': self.object.pk})
 
