@@ -2,20 +2,26 @@
 {% block title %}
     Файл
 {% endblock %}
+{% block menu_links %}
+    <a class="nav-item nav-link" href="{% url 'webapp:add_file' %}">Добавить файл</a>
+{% endblock %}
 
 {% block content %}
-    <div>
-        <h1>Детальный просмотр файла</h1>
-        <h2>{{ sharedfile.name }}</h2>
-        <h3>Автор:
-            {% if sharedfile.user_id %}
-                {{ sharedfile.user_id.username }}
-            {% else %}
-                Аноним
-            {% endif %}
-        </h3>
-        <h4>Скачан {{ sharedfile.downloaded_count }} раз</h4>
-        <div class="btn-group-vertical">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-6 col-xl-6">
+            <h1>Детальный просмотр файла</h1>
+            <h2>{{ sharedfile.name }}</h2>
+            <h3>Автор:
+                {% if sharedfile.user_id %}
+                    <a href="{% url 'accounts:view_user_files' sharedfile.user_id.id %}">{{ sharedfile.user_id.username }}</a>
+                {% else %}
+                    Аноним
+                {% endif %}
+            </h3>
+            <h4>Скачан {{ sharedfile.downloaded_count }} раз</h4>
+
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-6 d-flex flex-column justify-content-center">
             <a href="{{ sharedfile.file.url }}" class="btn btn-info">Скачать</a>
             <div class="btn-group">
                 <a href="{% url 'webapp:edit_file' sharedfile.pk %}" class="btn btn-success">Редактировать</a>
@@ -23,7 +29,38 @@
                     Удалить
                 </button>
             </div>
+            {% if sharedfile.sharing_type == 'public' %}
+                <h6>Файл в общем доступе</h6>
+            {% elif sharedfile.sharing_type == 'closed'%}
+                <h6>Файл скрыт</h6>
+            {% else %}
+                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAccess" aria-expanded="false" aria-controls="collapseExample">
+                    Доступ к файлу
+                </button>
+                <div class="collapse" id="collapseAccess">
+                    <div class="card card-body" id="privileged_users">
+                        {% if sharedfile.privately_accessed %}
+                            {% for user in  sharedfile.privately_accessed.all %}
+                                <a href="{% url 'accounts:view_user_files' user.id %}">{{ user.username }}</a>
+                            {% endfor %}
+                        {% else  %}
+                            <h6 id="accessNone">Пользователь никому не доверяет</h6>
+                        {% endif %}
+                        <form id="formAddAccessToUser">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Введите имя пользователя</span>
+                                </div>
+                                <input type="text" maxlength="150" aria-label="username" class="form-control">
+                                <input type="submit" class="btn btn-success" value="Дать доступ" id="provideAccessSubmit">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            {% endif %}
         </div>
+
     </div>
 
 
