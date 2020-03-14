@@ -13,34 +13,36 @@ class UserProvideAccessView(APIView):
     def patch(self, request, pk):
         file_id = self.kwargs['pk']
         file = get_object_or_404(SharedFile, pk=file_id)
+        if request.user == file.user_id or request.user.has_perm('webapp.change_sharedfile'):
+            user_name = request.data['user_name'].strip()
+            try:
+                user = User.objects.get(username=user_name)
+                if user in file.privately_accessed.all():
+                    return JsonResponse({'message': 'Пользователь уже добавлен'}, status=400)
 
-        user_name = request.data['user_name'].strip()
-        try:
-            user = User.objects.get(username=user_name)
-            if user in file.privately_accessed.all():
-                return JsonResponse({'message': 'Пользователь уже добавлен'}, status=400)
+                file.privately_accessed.add(user)
 
-            file.privately_accessed.add(user)
-
-            serializer = UserSerializer(user)
-            return JsonResponse(data=serializer.data)
-        except ObjectDoesNotExist:
-            print('I am here ')
-            return JsonResponse({'message': 'Пользователь не найден'}, status=404)
+                serializer = UserSerializer(user)
+                return JsonResponse(data=serializer.data)
+            except ObjectDoesNotExist:
+                return JsonResponse({'message': 'Пользователь не найден'}, status=404)
+        else:
+            return JsonResponse({'message': 'Доступ ограничен'}, status=403)
 
 
 class DepriveUserAccessView(APIView):
     def patch(self, request, pk):
         file_id = self.kwargs['pk']
         file = get_object_or_404(SharedFile, pk=file_id)
-
-        serializer = UserSerializer(data=request.data, partial=True)
-
-        if serializer.is_valid():
-            user_id = request.data['id']
-            user = get_object_or_404(User, pk=user_id)
-            file.privately_accessed.remove(user)
-        return JsonResponse(data=request.data)
+        if request.user == file.user_id or request.user.has_perm('webapp.change_sharedfile'):
+            serializer = UserSerializer(data=request.data, partial=True)
+            if serializer.is_valid():
+                user_id = request.data['id']
+                user = get_object_or_404(User, pk=user_id)
+                file.privately_accessed.remove(user)
+            return JsonResponse(data=request.data)
+        else:
+            return JsonResponse({'message': 'Доступ ограничен'}, status=403)
 
 
 class DownloadCounterIncrement(APIView):

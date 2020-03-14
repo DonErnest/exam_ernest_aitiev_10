@@ -1,0 +1,187 @@
+[
+{
+  "model": "webapp.sharedfile",
+  "pk": 1,
+  "fields": {
+    "name": "shitty ladygovno",
+    "file": "files/9495.jpg",
+    "sharing_type": "public",
+    "user_id": null,
+    "uploaded": "2020-03-14T04:19:45.947Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 3,
+  "fields": {
+    "name": "Python's logo",
+    "file": "files/1200px-Python-logo-notext.svg_vYPwp5F.png",
+    "sharing_type": "public",
+    "user_id": null,
+    "uploaded": "2020-03-14T05:57:03.727Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 13,
+  "fields": {
+    "name": "\u043f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u0444\u0430\u0439\u043b \u0441\u0443\u043f\u0435\u0440\u0430\u0434\u043c\u0438\u043d\u0430",
+    "file": "files/1480184708144619212_QNp63Ek.jpg",
+    "sharing_type": "public",
+    "user_id": 1,
+    "uploaded": "2020-03-14T06:49:29.433Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 14,
+  "fields": {
+    "name": "\u041f\u0440\u0438\u0432\u0430\u0442\u043d\u044b\u0439 \u0444\u0430\u0439\u043b \u0441\u0443\u043f\u0435\u0440\u0430\u0434\u043c\u0438\u043d\u0430",
+    "file": "files/1444638249125328359.jpg",
+    "sharing_type": "private",
+    "user_id": 1,
+    "uploaded": "2020-03-14T06:53:19.229Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 16,
+  "fields": {
+    "name": "\u0421\u043a\u0440\u044b\u0442\u044b\u0439 \u0444\u0430\u0439\u043b \u0441\u0443\u043f\u0435\u0440\u0430\u0434\u043c\u0438\u043d\u0430",
+    "file": "files/parse.jpg",
+    "sharing_type": "closed",
+    "user_id": 1,
+    "uploaded": "2020-03-14T07:13:29.462Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 17,
+  "fields": {
+    "name": "\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u043f\u0435\u0441\u0438\u043a \u0443\u043d\u0430\u0431\u043e\u043c\u0431\u0435\u0440\u0430",
+    "file": "files/\u0411\u0435\u0437_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_1_LGUFXFa.jpeg",
+    "sharing_type": "public",
+    "user_id": 2,
+    "uploaded": "2020-03-14T07:47:57.950Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 18,
+  "fields": {
+    "name": "\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u0444\u0430\u0439\u043b \u0443\u043d\u0430\u0431\u043e\u043c\u0431\u0435\u0440\u0430",
+    "file": "files/Wl2QtJxL8Zk.jpg",
+    "sharing_type": "public",
+    "user_id": 2,
+    "uploaded": "2020-03-14T07:48:42.805Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 19,
+  "fields": {
+    "name": "\u0421\u043a\u0440\u044b\u0442\u044b\u0439 \u0444\u0430\u0439\u043b \u0443\u043d\u0430\u0431\u043e\u043c\u0431\u0435\u0440\u0430",
+    "file": "files/\u0411\u0435\u0437_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_4.jpeg",
+    "sharing_type": "closed",
+    "user_id": 2,
+    "uploaded": "2020-03-14T08:19:44.175Z",
+    "downloaded_count": 1,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 20,
+  "fields": {
+    "name": "Unabomber private file",
+    "file": "files/\u0411\u0435\u0437_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_4_SuEzjos.jpeg",
+    "sharing_type": "private",
+    "user_id": 2,
+    "uploaded": "2020-03-14T08:20:17.018Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 21,
+  "fields": {
+    "name": "\u041f\u0440\u0438\u0432\u0430\u0442\u043d\u0430\u044f \u0441\u043e\u0431\u0430\u0447\u043a\u0430 \u0443\u043d\u0430\u0431\u043e\u043c\u0431\u0435\u0440\u0430",
+    "file": "files/\u0411\u0435\u0437_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_1.jpeg",
+    "sharing_type": "private",
+    "user_id": 2,
+    "uploaded": "2020-03-14T08:21:00.475Z",
+    "downloaded_count": 0,
+    "privately_accessed": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 22,
+  "fields": {
+    "name": "\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u0444\u0430\u0439\u043b \u0430\u043d\u043e\u043d\u0438\u043c\u0443\u0441\u0430 4",
+    "file": "files/\u0411\u0435\u0437_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_3.jpeg",
+    "sharing_type": "public",
+    "user_id": null,
+    "uploaded": "2020-03-14T12:14:31.004Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 23,
+  "fields": {
+    "name": "\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u0444\u0430\u0439\u043b \u0430\u043d\u043e\u043d\u0438\u043c\u0443\u0441\u0430 3",
+    "file": "files/\u0411\u0435\u0437_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_3_iNJO1qu.jpeg",
+    "sharing_type": "public",
+    "user_id": null,
+    "uploaded": "2020-03-14T12:15:25.112Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 24,
+  "fields": {
+    "name": "\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u0444\u0430\u0439\u043b \u0430\u043d\u043e\u043d\u0438\u043c\u0443\u0441\u0430 2",
+    "file": "files/\u0411\u0435\u0437_\u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f_2.jpeg",
+    "sharing_type": "public",
+    "user_id": null,
+    "uploaded": "2020-03-14T12:18:24.588Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+},
+{
+  "model": "webapp.sharedfile",
+  "pk": 25,
+  "fields": {
+    "name": "\u041f\u0443\u0431\u043b\u0438\u0447\u043d\u044b\u0439 \u0444\u0430\u0439\u043b \u0430\u043d\u043e\u043d\u0438\u043c\u0443\u0441\u0430",
+    "file": "files/\u0441\u0443\u043c\u0430\u0448\u0435-\u0448\u0438\u0439-\u0431\u0443\u0445\u0433\u0430-\u0442\u0435\u0440-50660639.jpg",
+    "sharing_type": "public",
+    "user_id": null,
+    "uploaded": "2020-03-14T12:19:27.624Z",
+    "downloaded_count": 0,
+    "privately_accessed": []
+  }
+}
+]
