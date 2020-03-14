@@ -2,6 +2,9 @@
 {% block title %}
     Профиль
 {% endblock %}
+{% block menu_links %}
+    <a class="nav-item nav-link" href="{% url 'webapp:add_file' %}">Добавить файл</a>
+{% endblock %}
 {% block content %}
     <h1>Профиль пользователя {{ user_obj.username }}</h1>
     <hr>

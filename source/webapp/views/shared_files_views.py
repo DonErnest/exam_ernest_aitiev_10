@@ -13,15 +13,18 @@ from webapp.views.base_views import SimpleSearchView
 
 class IndexView(SimpleSearchView):
     template_name = 'index.html'
-    queryset = SharedFile.objects.filter(sharing_type=ACCESS_PUBLIC)
+    model = SharedFile
     context_object_name = 'sharedfiles'
     paginate_by = 10
     paginate_orphans = 2
     ordering = ['-uploaded']
 
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super().get_context_data(object_list=object_list, **kwargs)
-    #     return context
+    def get_queryset(self):
+        if self.request.user.has_perm('webapp.view_sharedfile'):
+            self.queryset = SharedFile.objects.all()
+        else:
+            self.queryset = SharedFile.objects.filter(sharing_type=ACCESS_PUBLIC)
+        return super(IndexView, self).get_queryset()
 
     def get_query(self):
         return Q(name__icontains=self.search_query)
